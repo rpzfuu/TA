@@ -360,7 +360,7 @@ createInertiaApp({
   title: (title) => `${title} - ${appName}`,
   resolve: (name) => resolvePageComponent(
     `./Pages/${name}.vue`,
-    /* @__PURE__ */ Object.assign({ "./Pages/Auth/Login.vue": () => import("./assets/Login-e2zs0oWN.js"), "./Pages/Dashboard.vue": () => import("./assets/Dashboard-C-QOEduk.js"), "./Pages/Profile.vue": () => import("./assets/Profile-Bpi77xWG.js"), "./Pages/Temuan.vue": () => import("./assets/Temuan-Bp61ujcL.js"), "./Pages/Validasi.vue": () => import("./assets/Validasi-OzZmq8ex.js") })
+    /* @__PURE__ */ Object.assign({ "./Pages/Auth/Login.vue": () => import("./assets/Login-e2zs0oWN.js"), "./Pages/Dashboard.vue": () => import("./assets/Dashboard-C5yugnYT.js"), "./Pages/Profile.vue": () => import("./assets/Profile-Z8Zvzwzw.js"), "./Pages/Temuan.vue": () => import("./assets/Temuan-YKPFVb_S.js"), "./Pages/Validasi.vue": () => import("./assets/Validasi-DLDU46yj.js") })
   ),
   setup({ el, App, props, plugin }) {
     const app = createApp({ render: () => h$1(App, props) });

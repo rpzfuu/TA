@@ -87,6 +87,24 @@ const validasiTemuan = async () => {
                     </div>
 
                     <div class="mb-4">
+                        <a
+                            :href="`http://127.0.0.1:8000/storage/${rekomendasi.bukti.replace(
+                                'public/',
+                                ''
+                            )}`"
+                            type="application/pdf"
+                            width="100%"
+                            height="600px"
+                            target="_blank"
+                            class="btn"
+                            ><v-icon
+                                name="fa-file-pdf"
+                                class="text-error"
+                            />Bukti {{ index + 1 }}</a
+                        >
+                    </div>
+
+                    <div class="mb-4">
                         <label class="label">
                             <span class="text-lg font-bold">Validasi</span>
                         </label>

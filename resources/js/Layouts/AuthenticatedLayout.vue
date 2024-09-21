@@ -227,7 +227,7 @@ onMounted(() => {
         </div>
     </div>
     <div class="flex min-h-screen">
-        <aside class="w-64 bg-white shadow-lg">
+        <aside class="bg-white shadow-lg w-72">
             <div class="flex flex-col p-4">
                 <nav class="space-y-4">
                     <Link
@@ -254,7 +254,11 @@ onMounted(() => {
                         }"
                     >
                         <v-icon name="hi-document-text" />
-                        <span class="font-medium">Temuan</span>
+                        <span class="font-medium">
+                            <template v-if="auth.user.is_spi"
+                                >Input Temuan</template
+                            ><template v-else>Input Tindak Lanjut</template>
+                        </span>
                     </Link>
                     <Link
                         as="button"
@@ -267,7 +271,11 @@ onMounted(() => {
                         }"
                     >
                         <v-icon name="hi-clipboard-check" />
-                        <span class="font-medium">Validasi</span>
+                        <span class="font-medium"
+                            ><template v-if="auth.user.is_spi"
+                                >Validasi bukti</template
+                            ><template v-else>Cek Validasi</template>
+                        </span>
                     </Link>
                 </nav>
             </div>

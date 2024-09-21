@@ -22,22 +22,54 @@ defineExpose({
 const form = ref<{
     nik: any;
     rekomendasi: Array<{}>;
+    bukti: File[];
 }>({
     nik: props.nik,
     rekomendasi: [],
+    bukti: [],
 });
 const emits = defineEmits(["refresh"]);
 
 const inputTindakLanjut = async () => {
     try {
         form.value.rekomendasi = props.temuan.rekomendasi;
-        const res = await RequestAPI.inputTindakLanjut({ data: form.value });
+        const formData = new FormData();
+        formData.append("nik", form.value.nik);
+        formData.append("rekomendasi", JSON.stringify(form.value.rekomendasi));
+
+        form.value.bukti.forEach((bukt, index) => {
+            formData.append(`bukti[${index}]`, bukt);
+        });
+        const res = await RequestAPI.inputTindakLanjut({ data: formData });
         Toast.showSuccess(res.message);
         emits("refresh");
         modal.value?.close();
     } catch (e: any) {
         Toast.showError(String(e.message));
     }
+};
+
+const inputRefs = ref<HTMLInputElement[]>([]);
+
+const handleFileInputChange = (index: number) => {
+    const filesInput = inputRefs.value[index]?.files;
+
+    if (!filesInput || filesInput.length === 0) {
+        return;
+    }
+
+    const file = filesInput[0];
+    if (file.size > 10000000) {
+        Toast.showError("File size exceeds the maximum limit of 10MB.");
+        return;
+    }
+
+    if (!["application/pdf"].includes(file.type)) {
+        Toast.showError("Only PDF files are allowed.");
+        return;
+    }
+
+    form.value.bukti[index] = file;
 };
 </script>
 
@@ -77,6 +109,20 @@ const inputTindakLanjut = async () => {
                             v-model="rekomendasi.tindak_lanjut"
                             :placeholder="'Isi tindak lanjut ' + (index + 1)"
                             class="justify-center w-full input input-bordered items"
+                        />
+                    </div>
+                    <div class="mb-4 form-control">
+                        <label class="label">
+                            <span class="label-text"
+                                >Bukti {{ index + 1 }}</span
+                            >
+                        </label>
+                        <input
+                            ref="inputRefs"
+                            type="file"
+                            @change="handleFileInputChange(index)"
+                            class="w-full file-input file-input-bordered"
+                            accept=".pdf"
                         />
                     </div>
                 </div>

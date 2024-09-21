@@ -473,7 +473,7 @@ class ApiController extends Controller
     public function inputTindakLanjut (Request $request){
         try {
             $nik = $request->nik;
-            $rekomendasiArray = $request->rekomendasi;
+            $rekomendasiArray = json_decode($request->input('rekomendasi'), true);
 
             if (count($rekomendasiArray) == 0) {
                 throw new \Exception('Tidak ada rekomendasi yang dikirim.');
@@ -509,12 +509,17 @@ class ApiController extends Controller
                 'updated_at' => Carbon::now(),
             ]);
 
-            foreach ($rekomendasiArray as $rekom) {
+            foreach ($rekomendasiArray as $index=>$rekom) {
+                
                 $rekomendasi = Rekomendasi::findOrFail($rekom['id']);
+                
+                $bukti = $request->file("bukti.$index")->store('public/uploads');
+                
                 $rekomendasi->update([
                     'tindak_lanjut' => $rekom['tindak_lanjut'],
                     'status' => 'Menunggu Validasi', 
                     'updated_at' => Carbon::now(),
+                    'bukti' => $bukti,
                 ]);
 
                 RekomendasiHistory::create([

@@ -41,25 +41,30 @@
                     :key="index"
                     class="flex justify-between p-4 mb-6 border rounded-lg shadow-inner bg-gray-50"
                 >
-                    <div>
-                        <p class="text-sm font-semibold">
-                            Rekomendasi {{ index + 1 }}:
-                        </p>
-                        <p class="px-2 py-1 text-gray-700">
-                            {{ rekomendasi?.rekomendasi }}
-                        </p>
+                    <div class="w-3/4 pr-4 text-left">
+                        <div>
+                            <p class="text-sm font-semibold">
+                                Rekomendasi {{ index + 1 }}:
+                            </p>
+                            <p class="py-1 text-gray-700">
+                                {{ rekomendasi?.rekomendasi }}
+                            </p>
+                        </div>
+                        <br />
+                        <div>
+                            <p class="text-sm font-semibold">
+                                Tindak Lanjut {{ index + 1 }}:
+                            </p>
+                            <p class="py-1 text-gray-700">
+                                {{ rekomendasi?.tindak_lanjut }}
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-sm font-semibold">
-                            Tindak Lanjut {{ index + 1 }}:
-                        </p>
-                        <p class="px-2 py-1 text-gray-700">
-                            {{ rekomendasi?.tindak_lanjut }}
-                        </p>
+                    <div class="flex items-center justify-center w-1/4">
+                        <span class="flex items-center p-2 border rounded-full">
+                            {{ rekomendasi?.status }}
+                        </span>
                     </div>
-                    <span class="badge badge-outline">{{
-                        rekomendasi?.status
-                    }}</span>
                 </div>
             </div>
 

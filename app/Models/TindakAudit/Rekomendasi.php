@@ -18,7 +18,8 @@ class Rekomendasi extends Model
         'alasan',
         'created_at',
         'updated_at',
-        'tindak_lanjut'
+        'tindak_lanjut',
+        'bukti',
     ];
 
     public function temuan(){
