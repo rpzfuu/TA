@@ -48,7 +48,7 @@ class ApiController extends Controller
                 "code" => "4SDM"
             ],
             [
-                "name" => "BAGIAN AKUNTANSI DAN KEUANGAN",
+                "name" => "BAGIAN KEUANGAN & AKUNTANSI",
                 "code" => "4AKN"
             ],
             [
